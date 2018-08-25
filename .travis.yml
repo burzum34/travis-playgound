@@ -1,1 +1,30 @@
 sudo: enabled
+
+stages:
+  - compile
+  - test
+
+jobs:
+  include:
+
+    #
+    # Compile
+    #
+
+    - stage: compile
+      script:
+        - 'echo "Compile test"'
+    - stage: compile
+      script:
+        - 'echo "Compile prod"'
+
+    #
+    # Test
+    #
+
+    - stage: test
+      script:
+        - 'echo "Unit tests"'
+    - stage: test
+      script:
+        - 'echo "Lint"'
