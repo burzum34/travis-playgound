@@ -1,11 +1,17 @@
-deps:
+DKR_REGISTRY := registry.gitlab.com/forzafootball/images
+DKR_BUILD_IMAGE := $(DKR_REGISTRY)/elixir:1.5.3-alpine
+
+deps: docker-login
 	echo "deps"
 
-compile:
+compile: docker-login
 	echo "compile"
 
-test:
+test: docker-login
 	echo "test"
 
-lint:
+lint: docker-login
 	echo "lint"
+
+docker-login:
+	echo "$$DKR_PASSWORD" | docker login -u "$$DKR_USER" --password-stdin $(DKR_REGISTRY)
