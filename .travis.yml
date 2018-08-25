@@ -1,4 +1,12 @@
 sudo: enabled
+env:
+  global:
+    # include $HOME/.local/bin for `aws`
+    - PATH=$HOME/.local/bin:$PATH
+
+before_install:
+  - pip install --user awscli
+  - mkdir -p ~/$TRAVIS_BUILD_NUMBER
 
 stages:
   - compile
