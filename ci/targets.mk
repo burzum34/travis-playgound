@@ -25,4 +25,4 @@ docker-build: docker-login
 	docker build -t $(DKR_IMAGE):$$DKR_TAG -f $(DKR_FILE) .
 
 docker-push: docker-login docker-build
-	docker push
+	docker push $(DKR_IMAGE):$$DKR_TAG

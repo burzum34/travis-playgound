@@ -44,7 +44,7 @@ jobs:
     - name: Docker Build Latest
       stage: package
       env:
-        - DKR_TAG=${TRAVIS_BRANCH}
+        - DKR_TAG=$TRAVIS_BRANCH
       script: make docker-push
       if: branch != "master"
 
