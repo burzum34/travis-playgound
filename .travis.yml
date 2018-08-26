@@ -31,13 +31,19 @@ jobs:
     # Package
     #
     - stage: package
-      script: DKR_TAG=latest make docker-push
+      env:
+        - DKR_TAG=latest
+      script: make docker-push
       if: branch == "master"
 
     - stage: package
-      script: DKR_TAG=$TRAVIS_BRANCH make docker-push
+      env:
+        - DKR_TAG=$TRAVIS_BRANCH
+      script: make docker-push
       if: branch != "master"
 
     - stage: package
-      script: DKR_TAG=$TRAVIS_TAG make docker-push
+      env:
+        - DKR_TAG=$TRAVIS_TAG
+      script: make docker-push
       if: tag

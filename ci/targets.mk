@@ -21,8 +21,8 @@ lint: docker-login
 docker-login:
 	echo "$$DKR_PASSWORD" | docker login -u "$$DKR_USER" --password-stdin $(DKR_REGISTRY)
 
-docker-build:
+docker-build: docker-login
 	docker build -t $(DKR_IMAGE):$$DKR_TAG -f $(DKR_FILE) .
 
-docker-push: docker-build docker-login
+docker-push: docker-login docker-build
 	docker push
