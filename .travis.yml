@@ -9,22 +9,10 @@ before_install:
   - mkdir -p ~/$TRAVIS_BUILD_NUMBER
 
 stages:
-  - compile
   - test
 
 jobs:
   include:
-
-    #
-    # Compile
-    #
-
-    - stage: compile
-      script:
-        - MIX_ENV=test make deps compile
-    - stage: compile
-      script:
-        - MIX_ENV=prod make deps compile
 
     #
     # Test
@@ -32,7 +20,7 @@ jobs:
 
     - stage: test
       script:
-        - make test
+        - MIX_ENV=test make deps compile test
     - stage: test
       script:
         - make lint
