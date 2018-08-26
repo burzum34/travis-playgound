@@ -1,5 +1,7 @@
 DKR_REGISTRY:=registry.gitlab.com/forzafootball/images
 DKR_BUILD_IMAGE:=$(DKR_REGISTRY)/elixir:1.5.3-alpine
+DKR_FILE:=docker/Dockerfile
+DKR_IMAGE:=$(DKR_REGISTRY)/travis-playground
 
 DKR=docker run --rm -it -w /work -v $(shell pwd)/:/work $(DKR_BUILD_IMAGE)
 

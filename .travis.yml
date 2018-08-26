@@ -1,7 +1,11 @@
 sudo: enabled
 language: generic
+install: true
+
 stages:
   - test
+  - integration
+  - package
 
 jobs:
   include:
@@ -9,10 +13,23 @@ jobs:
     #
     # Test
     #
-
     - stage: test
       script:
         - MIX_ENV=test make deps compile test
     - stage: test
       script:
         - make lint
+
+    #
+    # Integration
+    #
+    - stage: integration
+      script:
+        - echo "NOT IMPLEMENTED"
+
+    #
+    # Package
+    #
+    - stage: package
+      script:
+        - echo "NOT IMPLEMENTED"
