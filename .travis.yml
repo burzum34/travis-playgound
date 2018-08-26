@@ -14,22 +14,30 @@ jobs:
     # Test
     #
     - stage: test
+      env:
+        - MIX_ENV=test
       script:
-        - MIX_ENV=test make deps compile test
+        - make deps compile test
     - stage: test
-      script:
-        - make lint
+      script: make lint
 
     #
     # Integration
     #
     - stage: integration
-      script:
-        - echo "NOT IMPLEMENTED"
+      script: echo "NOT IMPLEMENTED"
 
     #
     # Package
     #
     - stage: package
-      script:
-        - echo "NOT IMPLEMENTED"
+      script: DKR_TAG=latest make docker-push
+      if: branch = "master"
+
+    - stage: package
+      script: DKR_TAG=$TRAVIS_BRANCH make docker-push
+      if: branch != "master"
+
+    - stage: package
+      script: DKR_TAG=$TRAVIS_TAG make docker-push
+      if: tag
