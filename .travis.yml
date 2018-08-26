@@ -1,9 +1,5 @@
 sudo: enabled
-env:
-  global:
-    # include $HOME/.local/bin for `aws`
-    - PATH=$HOME/.local/bin:$PATH
-
+language: generic
 stages:
   - test
 
