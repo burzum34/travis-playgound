@@ -4,13 +4,14 @@ DKR_BUILD_IMAGE:=$(DKR_REGISTRY)/elixir:1.5.3-alpine
 DKR=docker run --rm -it -w /work -v $(shell pwd)/:/work $(DKR_BUILD_IMAGE)
 
 deps: docker-login
-	$(DKR) echo "NOT IMPLEMENTED"
+	$(DKR) mix deps.get
 
 compile: docker-login
-	$(DKR) echo "NOT IMPLEMENTED"
+	$(DKR) mix deps.compile
+	$(DKR) mix compile --warnings-as-errors
 
 test: docker-login
-	$(DKR) echo "NOT IMPLEMENTED"
+	$(DKR) mix test
 
 lint: docker-login
 	$(DKR) echo "NOT IMPLEMENTED"
