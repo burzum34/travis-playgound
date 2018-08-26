@@ -13,36 +13,43 @@ jobs:
     #
     # Test
     #
-    - stage: test
+    - name: Unit Tests
+      stage: test
       env:
         - MIX_ENV=test
       script:
         - make deps compile test
-    - stage: test
+
+    - name: Code Analysis
+      stage: test
       script: make lint
 
     #
     # Integration
     #
-    - stage: integration
+    - name: Integration Tests
+      stage: integration
       script: echo "NOT IMPLEMENTED"
 
     #
     # Package
     #
-    - stage: package
+    - name: Docker Build Latest
+      stage: package
       env:
         - DKR_TAG=latest
       script: make docker-push
       if: branch == "master"
 
-    - stage: package
+    - name: Docker Build Latest
+      stage: package
       env:
         - DKR_TAG=${TRAVIS_BRANCH}
       script: make docker-push
       if: branch != "master"
 
-    - stage: package
+    - name: Docker Build Tag
+      stage: package
       env:
         - DKR_TAG=$TRAVIS_TAG
       script: make docker-push
