@@ -6,6 +6,7 @@ stages:
   - test
   - integration
   - package
+  - release
 
 jobs:
   include:
@@ -19,6 +20,7 @@ jobs:
         - MIX_ENV=test
       script:
         - make deps compile test
+        - bash -c 'echo $TRAVIS_TAG'
 
     - name: Code Analysis
       stage: test
@@ -54,3 +56,11 @@ jobs:
         - DKR_TAG=$TRAVIS_TAG
       script: make docker-push
       if: tag
+
+    #
+    # Deploy
+    #
+    - name: Deploy
+      stage: release
+      script: echo "NOT IMPLEMENTED"
+      if: branch == "release" AND env(TRAVIS_TAG) =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/
