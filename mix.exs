@@ -4,7 +4,7 @@ defmodule TravisPlayground.MixProject do
   def project do
     [
       app: :travis_playground,
-      version: "0.0.6",
+      version: "0.0.7",
       elixir: "~> 1.5",
       start_permanent: Mix.env() == :prod,
       deps: deps()
