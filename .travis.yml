@@ -6,6 +6,7 @@ stages:
   - test
   - integration
   - package
+  - release
 
 jobs:
   include:
@@ -29,7 +30,7 @@ jobs:
     #
     - name: Integration Tests
       stage: integration
-      script: echo "NOT IMPLEMENTED"
+      script: make integration-test
 
     #
     # Package
@@ -54,3 +55,11 @@ jobs:
         - DKR_TAG=$TRAVIS_TAG
       script: make docker-push
       if: tag
+
+    #
+    # Deploy
+    #
+    - name: Deploy
+      stage: release
+      script: make deploy
+      if: $TRAVIS_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/
