@@ -1,0 +1,1 @@
+include ci/targets.mk
