@@ -62,4 +62,4 @@ jobs:
     - name: Deploy
       stage: release
       script: make deploy
-      if: $TRAVIS_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/
+      if: env(TRAVIS_TAG) =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/
